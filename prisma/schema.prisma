@@ -1,0 +1,272 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model pel {
+  nosam    Int?
+  tglbayar DateTime? @db.Date
+  periode  Int?
+  kode     String    @id @db.VarChar(35)
+  denda    Decimal?  @default(0.00) @db.Decimal(15, 2)
+
+  @@map("_pel")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model drd {
+  kode                 String    @id @db.VarChar(50)
+  periode              String?   @db.VarChar(6)
+  nosamb               String?   @db.VarChar(50)
+  nama                 String?   @db.VarChar(50)
+  alamat               String?   @db.VarChar(100)
+  kodegol              String?   @default("-") @db.VarChar(50)
+  kodediameter         String?   @default("-") @db.VarChar(50)
+  koderayon            String?   @default("-") @db.VarChar(30)
+  kodekelurahan        String?   @default("-") @db.VarChar(30)
+  kodekolektif         String?   @default("-") @db.VarChar(30)
+  stanlalu             Decimal?  @default(0.000) @db.Decimal(13, 3)
+  stanskrg             Decimal?  @default(0.000) @db.Decimal(13, 3)
+  stanangkat           Decimal?  @default(0.000) @db.Decimal(13, 3)
+  pakai                Decimal?  @default(0.000) @db.Decimal(13, 3)
+  biayapemakaian       Decimal?  @default(0.00) @db.Decimal(18, 2)
+  administrasi         Decimal?  @default(0) @db.Decimal(18, 0)
+  pemeliharaan         Decimal?  @default(0) @db.Decimal(18, 0)
+  retribusi            Decimal?  @default(0) @db.Decimal(18, 0)
+  pelayanan            Decimal?  @default(0) @db.Decimal(18, 0)
+  airlimbah            Decimal?  @default(0) @db.Decimal(18, 0)
+  dendapakai0          Decimal?  @default(0) @db.Decimal(18, 0)
+  administrasilain     Decimal?  @default(0) @db.Decimal(18, 0)
+  pemeliharaanlain     Decimal?  @default(0) @db.Decimal(18, 0)
+  retribusilain        Decimal?  @default(0) @db.Decimal(18, 0)
+  meterai              Decimal?  @default(0) @db.Decimal(18, 0)
+  dendatunggakan       Decimal?  @default(0) @db.Decimal(18, 0)
+  rekair               Decimal?  @default(0.00) @db.Decimal(18, 2)
+  ppn                  Decimal?  @default(0.00) @db.Decimal(18, 2)
+  persenppn            Decimal?  @default(0.00) @db.Decimal(18, 2)
+  total                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  tglbayar             DateTime? @db.DateTime(0)
+  tglbatal             DateTime? @db.DateTime(0)
+  flaglunas            String?   @default("0") @db.Char(1)
+  flagbatal            String?   @default("0") @db.Char(1)
+  alasanbatal          String?   @db.VarChar(225)
+  loketbayar           String?   @db.VarChar(50)
+  kasir                String?   @db.VarChar(50)
+  tglupload            DateTime? @db.DateTime(0)
+  tglmulaidenda        DateTime? @db.Date
+  tglmulaidenda2       DateTime? @db.Date
+  tglmulaidenda3       DateTime? @db.Date
+  bulan                String?   @db.VarChar(30)
+  terbilang            String?   @db.VarChar(200)
+  prog1                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog2                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog3                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog4                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog5                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  nolpp                String?   @db.VarChar(50)
+  waktucetak           DateTime? @db.DateTime(0)
+  jasaloket            Decimal?  @default(0) @db.Decimal(18, 0)
+  totalloket           Decimal?  @default(0.00) @db.Decimal(18, 2)
+  terbilangloket       String?   @db.VarChar(150)
+  flag                 String?   @default("0") @db.Char(1)
+  angsuran             Decimal?  @default(0.00) @db.Decimal(18, 2)
+  trf_dendatunggakan   Decimal?  @default(0) @db.Decimal(18, 0)
+  trf_dendatunggakan2  Decimal?  @default(0) @db.Decimal(18, 0)
+  trf_dendatunggakan3  Decimal?  @default(0.00) @db.Decimal(18, 2)
+  flagdendapersen      String?   @default("0") @db.Char(1)
+  flagdendapersen2     String?   @default("0") @db.Char(1)
+  flagdendapersen3     String?   @default("0") @db.Char(1)
+  flagdendalipat1      String?   @default("0") @db.Char(1)
+  kodeadministrasilain String?   @default("-") @db.VarChar(30)
+  kodepemeliharaanlain String?   @default("-") @db.VarChar(30)
+  koderetribusilain    String?   @default("-") @db.VarChar(30)
+  waktuupdate          DateTime? @db.DateTime(0)
+  loketupdate          String?   @db.VarChar(50)
+  sudahupload          String?   @default("0") @db.Char(1)
+  offline              String?   @default("0") @db.Char(1)
+  golongan             String?   @default("-") @db.VarChar(100)
+  namaloket            String?   @default("-") @db.VarChar(100)
+  kodewil              String?   @default("-1") @db.VarChar(20)
+  namawil              String?   @default("-") @db.VarChar(50)
+  blok1                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok2                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok3                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok4                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok5                Decimal?  @default(0.00) @db.Decimal(18, 2)
+
+  @@index([flaglunas], map: "flaglunas")
+  @@index([nosamb], map: "nosamb")
+  @@index([periode], map: "periode")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model drd_logupload {
+  kode                 String    @id @db.VarChar(50)
+  periode              String?   @db.VarChar(6)
+  nosamb               String?   @db.VarChar(50)
+  nama                 String?   @db.VarChar(50)
+  alamat               String?   @db.VarChar(100)
+  kodegol              String?   @default("-") @db.VarChar(50)
+  kodediameter         String?   @default("-") @db.VarChar(50)
+  koderayon            String?   @default("-") @db.VarChar(30)
+  kodekelurahan        String?   @default("-") @db.VarChar(30)
+  kodekolektif         String?   @default("-") @db.VarChar(30)
+  stanlalu             Decimal?  @default(0.000) @db.Decimal(13, 3)
+  stanskrg             Decimal?  @default(0.000) @db.Decimal(13, 3)
+  stanangkat           Decimal?  @default(0.000) @db.Decimal(13, 3)
+  pakai                Decimal?  @default(0.000) @db.Decimal(13, 3)
+  biayapemakaian       Decimal?  @default(0.00) @db.Decimal(18, 2)
+  administrasi         Decimal?  @default(0) @db.Decimal(18, 0)
+  pemeliharaan         Decimal?  @default(0) @db.Decimal(18, 0)
+  retribusi            Decimal?  @default(0) @db.Decimal(18, 0)
+  pelayanan            Decimal?  @default(0) @db.Decimal(18, 0)
+  airlimbah            Decimal?  @default(0) @db.Decimal(18, 0)
+  dendapakai0          Decimal?  @default(0) @db.Decimal(18, 0)
+  administrasilain     Decimal?  @default(0) @db.Decimal(18, 0)
+  pemeliharaanlain     Decimal?  @default(0) @db.Decimal(18, 0)
+  retribusilain        Decimal?  @default(0) @db.Decimal(18, 0)
+  meterai              Decimal?  @default(0) @db.Decimal(18, 0)
+  dendatunggakan       Decimal?  @default(0) @db.Decimal(18, 0)
+  rekair               Decimal?  @default(0.00) @db.Decimal(18, 2)
+  ppn                  Decimal?  @default(0.00) @db.Decimal(18, 2)
+  persenppn            Decimal?  @default(0.00) @db.Decimal(18, 2)
+  total                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  tglbayar             DateTime? @db.DateTime(0)
+  tglbatal             DateTime? @db.DateTime(0)
+  flaglunas            String?   @default("0") @db.Char(1)
+  flagbatal            String?   @default("0") @db.Char(1)
+  alasanbatal          String?   @db.VarChar(50)
+  loketbayar           String?   @db.VarChar(50)
+  kasir                String?   @db.VarChar(50)
+  tglupload            DateTime? @db.DateTime(0)
+  tglmulaidenda        DateTime? @db.Date
+  tglmulaidenda2       DateTime? @db.Date
+  tglmulaidenda3       DateTime? @db.Date
+  bulan                String?   @db.VarChar(30)
+  terbilang            String?   @db.VarChar(200)
+  prog1                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog2                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog3                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog4                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  prog5                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  nolpp                String?   @db.VarChar(50)
+  waktucetak           DateTime? @db.DateTime(0)
+  jasaloket            Decimal?  @default(0) @db.Decimal(18, 0)
+  totalloket           Decimal?  @default(0.00) @db.Decimal(18, 2)
+  terbilangloket       String?   @db.VarChar(150)
+  flag                 String?   @default("0") @db.Char(1)
+  angsuran             Decimal?  @default(0.00) @db.Decimal(18, 2)
+  trf_dendatunggakan   Decimal?  @default(0) @db.Decimal(18, 0)
+  trf_dendatunggakan2  Decimal?  @default(0) @db.Decimal(18, 0)
+  trf_dendatunggakan3  Decimal?  @default(0.00) @db.Decimal(18, 2)
+  flagdendapersen      String?   @default("0") @db.Char(1)
+  flagdendapersen2     String?   @default("0") @db.Char(1)
+  flagdendapersen3     String?   @default("0") @db.Char(1)
+  flagdendalipat1      String?   @default("0") @db.Char(1)
+  kodeadministrasilain String?   @default("-") @db.VarChar(30)
+  kodepemeliharaanlain String?   @default("-") @db.VarChar(30)
+  koderetribusilain    String?   @default("-") @db.VarChar(30)
+  waktuupdate          DateTime? @db.DateTime(0)
+  loketupdate          String?   @db.VarChar(50)
+  sudahupload          String?   @default("0") @db.Char(1)
+  offline              String?   @default("0") @db.Char(1)
+  golongan             String?   @default("-") @db.VarChar(100)
+  namaloket            String?   @default("-") @db.VarChar(100)
+  kodewil              String?   @default("-1") @db.VarChar(20)
+  namawil              String?   @default("-") @db.VarChar(50)
+  blok1                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok2                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok3                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok4                Decimal?  @default(0.00) @db.Decimal(18, 2)
+  blok5                Decimal?  @default(0.00) @db.Decimal(18, 2)
+
+  @@index([nosamb], map: "nosamb")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model logbayar {
+  nosamb         String    @db.VarChar(100)
+  periodeakhir   String    @db.VarChar(6)
+  kode           String    @db.VarChar(50)
+  tglbayar       DateTime  @db.DateTime(0)
+  kasir          String?   @db.VarChar(30)
+  loketbayar     String?   @db.VarChar(30)
+  jasaloket      Decimal?  @db.Decimal(18, 0)
+  total          Decimal?  @db.Decimal(18, 0)
+  totalloket     Decimal?  @db.Decimal(18, 0)
+  totalbayar     Decimal?  @db.Decimal(18, 2)
+  tglwaktuinput  DateTime? @db.DateTime(0)
+  namauser       String?   @db.VarChar(50)
+  passworduser   String?   @db.VarChar(300)
+  kodeloket      String?   @db.VarChar(50)
+  dendatunggakan Decimal?  @db.Decimal(18, 2)
+  waktuupdate    DateTime? @db.DateTime(0)
+  loketupdate    String?   @db.VarChar(30)
+  kodewil        String?   @db.VarChar(100)
+  namaloket      String?   @db.VarChar(20)
+  namawil        String?   @db.VarChar(50)
+
+  @@index([kode], map: "kode")
+  @@ignore
+}
+
+model loket {
+  kodeloket     String  @id @db.VarChar(30)
+  loket         String? @default("-") @db.VarChar(50)
+  wilayahbayar  String? @db.VarChar(100)
+  kodewillokasi String? @default("-") @db.VarChar(30)
+  aktif         String? @default("0") @db.Char(1)
+}
+
+model pel_coklit {
+  id     Int     @id @default(autoincrement())
+  nosamb String? @unique(map: "nosamb") @db.VarChar(10)
+}
+
+model pelanggan {
+  nosamb String  @id @db.VarChar(25)
+  nama   String? @db.VarChar(100)
+  alamat String? @db.VarChar(150)
+  aktif  String? @default("0") @db.Char(1)
+}
+
+model pengaturan {
+  idx    Int     @id
+  hostip String? @db.VarChar(35)
+}
+
+model udownload {
+  kode           String    @id @db.VarChar(25)
+  periode        String?   @db.VarChar(6)
+  nosamb         String?   @db.VarChar(10)
+  kodeloket      String?   @db.VarChar(15)
+  dendatunggakan Decimal?  @db.Decimal(15, 2)
+  tglbayar       DateTime? @db.DateTime(0)
+  flagdownload   String?   @default("0") @db.Char(1)
+  waktudownload  DateTime? @db.DateTime(0)
+}
+
+model userakses {
+  id                    Int       @id @default(autoincrement())
+  nama                  String    @db.VarChar(50)
+  namauser              String    @unique(map: "namauser") @db.VarChar(50)
+  passworduser          String?   @db.VarChar(300)
+  peran                 String?   @db.VarChar(50)
+  aktif                 String?   @default("0") @db.Char(1)
+  waktubuat             DateTime? @db.DateTime(0)
+  kodeloket             String?   @default("-") @db.VarChar(50)
+  jasa                  Decimal?  @default(0) @db.Decimal(18, 0)
+  pihakke2              String?   @default("0") @db.Char(1)
+  boleh_transaksi       String?   @default("0") @map("_boleh_transaksi") @db.Char(1)
+  boleh_buka_lock_bulan String?   @default("0") @map("_boleh_buka_lock_bulan") @db.Char(1)
+  langganan             String?   @default("0") @map("_langganan") @db.Char(1)
+  pembatalan            String?   @default("0") @map("_pembatalan") @db.Char(1)
+  data                  String?   @default("0") @map("_data") @db.Char(1)
+  haklembar             String?   @default("1/999") @map("_haklembar") @db.VarChar(10)
+
+  @@index([id], map: "id")
+}
